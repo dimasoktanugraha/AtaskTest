@@ -15,19 +15,6 @@ import java.util.*
 class CameraViewModel: ViewModel() {
 
     private val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
-//    private val REQUIRED_PERMISSION =
-//        mutableListOf(
-//            android.Manifest.permission.CAMERA
-//        ).apply {
-//            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P){
-//                add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//            }
-//        }.toTypedArray()
-//    fun hasPermission(context: Context) = REQUIRED_PERMISSION.all {
-//        ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
-//    }
-
-    fun getFileNameFormat(): String = FILENAME_FORMAT
 
     fun getRequiredPermission() = mutableListOf(
         android.Manifest.permission.CAMERA
@@ -43,7 +30,7 @@ class CameraViewModel: ViewModel() {
 
     fun getOutputOptionCamera(contentResolver: ContentResolver): ImageCapture.OutputFileOptions {
         // Create name and MediaStore
-        val name = SimpleDateFormat(getFileNameFormat(), Locale.US)
+        val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
             .format(System.currentTimeMillis())
         val contentValues = ContentValues().apply {
             put(MediaStore.MediaColumns.DISPLAY_NAME, name)
