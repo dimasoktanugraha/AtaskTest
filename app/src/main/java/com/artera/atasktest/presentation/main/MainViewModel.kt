@@ -157,15 +157,12 @@ class MainViewModel: ViewModel() {
             when {
                 char.isDigit() -> {
                     addNumber(char.toString())
-                    Log.d("MAIN ACTIVITY", "OCR Value: $char isNumber")
                 }
                 char.isDecimal() -> {
-                    Log.d("MAIN ACTIVITY", "OCR Value: $char decimal")
                     addDecimal()
                 }
                 char.isOperator() -> {
-                    Log.d("MAIN ACTIVITY", "OCR Value: $char operator")
-                    if(num2.isNotEmpty()) continue
+                    if(num2.isNotEmpty()) break
                     when(char.toString()){
                         "x", "X", "*" -> addOperation(CalculatorOperation.Multiply)
                         "/" -> addOperation(CalculatorOperation.Divide)
